@@ -18,15 +18,21 @@ $(document).ready(function() {
         }
     });
 
-    // Manipule o clique no botão "Agendar"
-    $('#bookAppointment').on('click', function() {
-        if (!selectedDate) {
-            alert('Selecione uma data no calendário.');
-            return;
-        }
+$('#bookAppointment').on('click', function() {
+    if (!selectedDate) {
+        alert('Selecione uma data no calendário.');
+        return;
+    }
 
-        var selectedTime = $('#timeslot').val();
-        var appointment = 'Data: ' + selectedDate + ' Hora: ' + selectedTime;
+    var clientName = $('#clientName').val().trim();
+
+    if (clientName === '') {
+        alert('Digite seu nome para agendar.');
+        return;
+    }
+
+    var selectedTime = $('#timeslot').val();
+    var appointment = 'Nome: ' + clientName + ' | Data: ' + selectedDate + ' | Hora: ' + selectedTime;
 
         // Adicione o agendamento ao array de agendamentos
         appointments.push(appointment);
