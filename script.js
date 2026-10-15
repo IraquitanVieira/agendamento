@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var selectedDate; // Variável para armazenar a data selecionada
+    var occupiedSlots = [];
     var appointments = []; // Array para armazenar os agendamentos
 
     // Initialize the calendar
@@ -32,6 +33,14 @@ $('#bookAppointment').on('click', function() {
     }
 
     var selectedTime = $('#timeslot').val();
+    var slot = selectedDate + '|' + selectedTime;
+
+if (occupiedSlots.includes(slot)) {
+    alert('Este horário já foi agendado. Escolha outro.');
+    return;
+}
+
+occupiedSlots.push(slot);
     var appointment = 'Nome: ' + clientName + ' | Data: ' + selectedDate + ' | Hora: ' + selectedTime;
 
         // Adicione o agendamento ao array de agendamentos
